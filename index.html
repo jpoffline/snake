@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <style>
+        .snakeGridCell {
+            height: 20px;
+            width: 20px;
+            padding: 1px;
+            border: 1px solid black;
+        }
+
+        .snakeGridCell.visited {
+            background-color: aqua;
+        }
+
+        .snakeGridCell.isSnakeBody {
+            background-color: blue;
+        }
+
+        .snakeGridCell.isSnakeHead {
+            background-color: green;
+        }
+
+        .snakeGridCell.isFood {
+            background-color: red;
+        }
+
+        .snakeGridCell.isRock {
+            background-color: grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main"></div>
+    <div id='gamestatus'>
+        <div><span>Are you alive?</span> <span id='alive'></span></div>
+        <div><span>Turns</span> <span id='turns'></span></div>
+        <div><span>Score</span> <span id='score'></span></div>
+    </div>
+    <script src='js/direction.js'></script>
+    <script src='js/food.js'></script>
+    <script src='js/snake.js'></script>
+    <script src='js/rock.js'></script>
+    <script src='js/game.js'></script>
+    <script src='js/utils.js'></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
