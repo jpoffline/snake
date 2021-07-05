@@ -18,7 +18,7 @@ function pickUnoccupiedCell(tries = 0) {
     var r = getRandomInt(0, NROWS);
     var c = getRandomInt(0, NCOLS);
     var id = toId(c, r);
-    if (isCellOccupied(id)) {
+    if (STATE.isCellOccupied(id)) {
         return pickUnoccupiedCell(tries += 1);
     }
     if (tries > 10) {
@@ -27,20 +27,13 @@ function pickUnoccupiedCell(tries = 0) {
     return id;
 }
 
-function isCellOccupied(id) {
-    if (isIdSnakeBody(id)) {
-        return true
-    } else if (isFoodCell(id)) {
-        return true
-    } else if (isIdRockCell(id)) {
-        return true
-    }
-    return false
-}
+
 
 function dispatchGameStatus(id, text) {
     document.getElementById(id).innerHTML = text;
 }
+
+
 
 function inGrid(head_dir) {
     if (head_dir.x < 0) {
@@ -56,4 +49,28 @@ function inGrid(head_dir) {
         return false;
     }
     return true;
+}
+
+class SnakeGame {
+    constructor() {
+        this.rocks = new Rocks();
+        this.snake = new Snake();
+        this.food = new Food();
+        this.turns = 0;
+        this.snake.render();
+    }
+
+    handle_direction_change(direction) {
+        this.turns++;
+
+        if (!this.snake.move(direction)) {
+            dispatchGameStatus(IDS.ALIVE, 'Nope');
+        }
+        this.snake.deleteCells();
+        this.snake.render();
+        this.food.place();
+        this.rocks.place()
+        dispatchGameStatus(IDS.SCORE, this.snake.length());
+        dispatchGameStatus(IDS.TURNS, this.TURNS);
+    }
 }

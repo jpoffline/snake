@@ -1,9 +1,18 @@
 
+
+
+class Location {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y
+    }
+}
+
 DIRECTION = {
-    LEFT: [-1, 0],
-    RIGHT: [1, 0],
-    UP: [0, -1],
-    DOWN: [0, 1]
+    LEFT: new Location(-1, 0),
+    RIGHT: new Location(1, 0),
+    UP: new Location(0, -1),
+    DOWN: new Location(0, 1)
 }
 function directionFromKey(key) {
     if (key == 'd' | key == 'ArrowRight') {

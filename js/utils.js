@@ -10,12 +10,21 @@ function clearCellsClasses(to_remove) {
     }
 }
 
+function addLocations(vec1, vec2) {
+    return new Location(
+        vec1.x + vec2.x,
+        vec1.y + vec2.y
+    );
+}
+function dirToID(dir) {
+    return toId(dir.x, dir.y);
+}
 function toId(c, r) {
     return c + "_" + r;
 }
 function toCR(id) {
     tkns = id.split('_').map(i => Number(i));
-    return { x: tkns[0], y: tkns[1] };
+    return new Location(tkns[0], tkns[1]);
 }
 function getRandomInt(min, max) {
     //The maximum is exclusive and the minimum is inclusive
